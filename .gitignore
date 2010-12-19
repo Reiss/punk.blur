@@ -1,0 +1,6 @@
+#ignore annoying flashdevelop folders
+demo/bin/
+demo/library/
+demo/obj/
+#ignore as3proj
+demo/*.as3proj
