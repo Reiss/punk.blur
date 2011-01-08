@@ -1,4 +1,4 @@
-package  
+package punk.blur
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
@@ -17,6 +17,9 @@ package
 		{
 			super();
 			_graphic = g;
+			active = g.active;
+			visible = g.visible;
+			relative = g.relative;
 		}
 		
 		public function get wrappedGraphic():Graphic
@@ -29,6 +32,11 @@ package
 			if (blurCanvas)
 				_graphic.render(blurCanvas, point, camera);
 			_graphic.render(target, point, camera);
+		}
+		
+		override public function update():void
+		{
+			_graphic.update();
 		}
 		
 	}
