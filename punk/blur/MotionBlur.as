@@ -19,7 +19,7 @@ package punk.blur
 		//screen-sized pre-processing buffer -- same color as screen
 		private var _preprocess:BitmapData = new BitmapData(FP.width, FP.height, false, FP.screen.color);
 		//screen-sized bitmap overlay -- same color as screen
-		private var _overlay:BitmapData = new BitmapData(FP.width, FP.height, true, FP.screen.color);
+		private var _overlay:BitmapData = new BitmapData(FP.width, FP.height, true, 0xFF000000 | FP.screen.color);
 		
 		
 		public function MotionBlur(blurFactor:Number)

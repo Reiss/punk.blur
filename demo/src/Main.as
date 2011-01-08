@@ -15,7 +15,6 @@ package
 		public function Main():void 
 		{
 			super(320,240);
-			FP.screen.color = 0xff000000;
 			FP.screen.scale = 2.0;
 			FP.world = new BlurLevel();
 		}
