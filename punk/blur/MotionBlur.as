@@ -1,5 +1,6 @@
 package punk.blur
 {
+	import flash.display.Bitmap;
 	import flash.display.BlendMode;
 	import net.flashpunk.Entity;
 	import flash.geom.Rectangle;
@@ -12,21 +13,19 @@ package punk.blur
 	 * @author Reiss
 	 */
 	public class MotionBlur extends Entity
-	{
+	{	
 		//screen size and location
 		private var _screenRect:Rectangle = new Rectangle(0, 0, FP.width, FP.height); 
 		private var _screenPoint:Point = new Point();
 		//screen-sized pre-processing buffer -- same color as screen
-		private var _preprocess:BitmapData = new BitmapData(FP.width, FP.height, false, FP.screen.color);
-		//screen-sized bitmap overlay -- same color as screen
-		private var _overlay:BitmapData = new BitmapData(FP.width, FP.height, true, 0xFF000000 | FP.screen.color);
-		
+		private var _preprocess:BitmapData = new BitmapData(FP.width, FP.height, true, 0);
+		//alpha transform for motion blur trails
+		private var _alphaTransform:ColorTransform;
 		
 		public function MotionBlur(blurFactor:Number)
 		{
-			//set the transparency for the overlay
-			var alpha:ColorTransform = new ColorTransform(1, 1, 1, 1.0 - blurFactor); //subtract blur from one, so that higher blur = more blurring
-			_overlay.colorTransform(_screenRect, alpha);
+			//set the fade for motion blur trails
+			_alphaTransform = new ColorTransform(1, 1, 1, blurFactor);
 		}
 		
 		//register an entity as casting bloom lighting
@@ -49,7 +48,7 @@ package punk.blur
 		
 		override public function render():void
 		{
-			_preprocess.draw(_overlay, null, null, BlendMode.NORMAL);
+			_preprocess.colorTransform(_screenRect, _alphaTransform);
 			super.render();
 			FP.buffer.draw(_preprocess);
 		}

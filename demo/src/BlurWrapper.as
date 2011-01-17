@@ -1,4 +1,4 @@
-package punk.blur
+package
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
