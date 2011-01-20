@@ -37,10 +37,10 @@ package
 			_blur.layer = 1;
 			add(_blur);
 			
-			//create and add an initial particle
-			_blur.register(create(Particle).graphic as BlurWrapper);
+			//create an initial particle
+			(create(Particle) as Particle).blur(_blur);
 			
-			//add some text -- don't bother registering it, since it doesn't move
+			//add some text -- don't bother wrapping it in a BlurWrapper, since it doesn't move
 			var txt:Entity = new Entity();
 			var img:Text;
 			Text.size = 48;
@@ -59,7 +59,7 @@ package
 			{
 				_elapsed -= _timeToNextParticle;
 				_timeToNextParticle = calcNextParticleTime();
-				_blur.register(create(Particle).graphic as BlurWrapper);
+				(create(Particle) as Particle).blur(_blur);
 			}
 			else
 				_elapsed += FP.elapsed;

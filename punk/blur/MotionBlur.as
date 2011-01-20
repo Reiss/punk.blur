@@ -38,18 +38,6 @@ package punk.blur
 			_alphaTransform.alphaMultiplier = blur;
 		}
 		
-		//register an entity as casting bloom lighting
-		public function register(g:BlurWrapper):void
-		{
-			g.blurCanvas = _preprocess;
-		}
-		
-		//unregister and entity as casting bloom lighting
-		public function unregister(g:BlurWrapper):void
-		{
-			g.blurCanvas = null;
-		}
-		
 		//returns the bloom canvas, in case you want to draw to it without using a bloom wrapper
 		public function get buffer():BitmapData
 		{
@@ -60,7 +48,7 @@ package punk.blur
 		{
 			_preprocess.colorTransform(_screenRect, _alphaTransform);
 			super.render();
-			FP.buffer.draw(_preprocess);
+			(renderTarget ? renderTarget : FP.buffer).draw(_preprocess);
 		}
 	}
 

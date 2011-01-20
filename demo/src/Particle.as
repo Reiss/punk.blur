@@ -32,8 +32,7 @@ package
 			//initialize to a random location at the bottom of the screen
 			super(FP.random * (FP.width - WIDTH), FP.height + DIAGONAL);
 			
-			_image = Image.createRect(WIDTH, HEIGHT);
-			graphic = new BlurWrapper(_image);
+			graphic = _image = Image.createRect(WIDTH, HEIGHT);
 			
 			//move via linear motion tween. when it gets off the screen boundaries, call recycle()
 			_motion = new LinearMotion(recycle, Tween.LOOPING);
@@ -47,6 +46,11 @@ package
 			
 			//center the image origin, so the image rotates around the center of the entity
 			_image.centerOO();
+		}
+		
+		public function blur(motionBlur:MotionBlur):void
+		{
+			graphic = new BlurWrapper(graphic, motionBlur);
 		}
 		
 		override public function update():void
