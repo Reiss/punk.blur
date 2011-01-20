@@ -19,13 +19,23 @@ package
 		private var _screenPoint:Point = new Point();
 		//screen-sized pre-processing buffer -- same color as screen
 		private var _preprocess:BitmapData = new BitmapData(FP.width, FP.height, true, 0);
-		//alpha transform for motion blur trails
+		//alpha transforms for motion blur trails
 		private var _alphaTransform:ColorTransform;
 		
 		public function MotionBlur(blurFactor:Number)
 		{
 			//set the fade for motion blur trails
 			_alphaTransform = new ColorTransform(1, 1, 1, blurFactor);
+		}
+		
+		//accessors for blur factor
+		public function get blurFactor():Number
+		{
+			return _alphaTransform.alphaMultiplier;
+		}
+		public function set blurFactor(blur:Number):void
+		{
+			_alphaTransform.alphaMultiplier = blur;
 		}
 		
 		//register an entity as casting bloom lighting

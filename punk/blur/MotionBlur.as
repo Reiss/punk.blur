@@ -28,6 +28,16 @@ package punk.blur
 			_alphaTransform = new ColorTransform(1, 1, 1, blurFactor);
 		}
 		
+		//accessors for blur factor
+		public function get blurFactor():Number
+		{
+			return _alphaTransform.alphaMultiplier;
+		}
+		public function set blurFactor(blur:Number):void
+		{
+			_alphaTransform.alphaMultiplier = blur;
+		}
+		
 		//register an entity as casting bloom lighting
 		public function register(g:BlurWrapper):void
 		{
