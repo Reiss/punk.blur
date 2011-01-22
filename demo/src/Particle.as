@@ -50,7 +50,8 @@ package
 		
 		public function blur(motionBlur:MotionBlur):void
 		{
-			graphic = new BlurWrapper(graphic, motionBlur);
+			if(!(graphic is BlurWrapper))
+				graphic = new BlurWrapper(graphic, motionBlur);
 		}
 		
 		override public function update():void
