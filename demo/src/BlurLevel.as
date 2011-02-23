@@ -27,7 +27,7 @@ package
 		private var _timeToNextParticle:Number = calcNextParticleTime();
 		
 		/* motion blur */
-		private var _blur:MotionBlur = new MotionBlur(BLUR);
+		private var _blur:BlurCanvas = new BlurCanvas(BLUR);
 		
 		override public function begin():void
 		{

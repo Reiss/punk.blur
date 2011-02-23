@@ -48,10 +48,10 @@ package
 			_image.centerOO();
 		}
 		
-		public function blur(motionBlur:MotionBlur):void
+		public function blur(motionBlur:BlurCanvas):void
 		{
-			if(!(graphic is BlurWrapper))
-				graphic = new BlurWrapper(graphic, motionBlur);
+			if(!(graphic is BlurredGraphic))
+				graphic = new BlurredGraphic(graphic, motionBlur);
 		}
 		
 		override public function update():void
